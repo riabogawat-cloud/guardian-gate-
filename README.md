@@ -9,9 +9,7 @@ MySQL is the source of truth (SQLAlchemy ORM). Everything runs with Docker Compo
     docker compose up --build
     # API docs: http://localhost:8000/docs
 
-## Test (no Docker needed; uses SQLite + fakeredis)
-    pip install -r requirements-dev.txt
-    pytest
+
 
 ## Endpoints
 | Method | Path | Notes |
@@ -28,7 +26,7 @@ MySQL is the source of truth (SQLAlchemy ORM). Everything runs with Docker Compo
 - **Cache:** key `invoice:<id>` and `invoices:list:<skip>:<limit>`, TTL 60s. Writes delete affected keys. Redis errors are treated as a cache miss.
 - **Limitations:** fixed window allows boundary bursts; list invalidation drops all list pages; no auth; tables created with `create_all` (no migrations).
 
-## Load test (measure your own numbers)
+## Load test 
     pip install locust
     # 1) cache ON
     RATE_LIMIT_ENABLED=false CACHE_ENABLED=true  docker compose up -d --build
